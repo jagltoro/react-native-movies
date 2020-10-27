@@ -3,9 +3,9 @@ import * as React from 'react';
 import {ThemeProvider} from '@shopify/restyle';
 
 import {theme} from "./src/Helpers/Theme";
-import {MainNavigator} from "./src/Main";
 import {LoadAssets} from "./src/Helpers";
 import {SafeAreaProvider} from "react-native-safe-area-context";
+import {HomeNavigator} from "./src/Navigator";
 
 // const assets:any = []
 const fonts = {
@@ -17,13 +17,12 @@ const fonts = {
   "Nunito-SemiBold": require("./assets/fonts/Nunito-SemiBold.otf"),
 };
 
-
 export default function App() {
   return (
     <ThemeProvider {...{theme}}>
       <LoadAssets {...{fonts}}>
         <SafeAreaProvider>
-            <MainNavigator/>
+            <HomeNavigator/>
         </SafeAreaProvider>
       </LoadAssets>
     </ThemeProvider>
