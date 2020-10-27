@@ -110,6 +110,7 @@ export const theme = createTheme({
     highlightBackground: palette["color-basic-300"],
     border: palette["color-basic-900"],
     text: palette["color-basic-800"],
+    cardTitles: palette["color-basic-200"],
     primary: palette["color-primary-500"],
     warning: palette["color-warning-500"],
     danger: palette["color-danger-500"]
@@ -130,7 +131,7 @@ export const theme = createTheme({
   },
   textVariants: {
     title:{
-      fontSize: 28,
+      fontSize: 48,
       fontFamily: "Dosis-Bold",
       color: "text",
     },
