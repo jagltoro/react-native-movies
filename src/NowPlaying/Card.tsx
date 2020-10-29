@@ -38,10 +38,11 @@ const Card = ({image, title, overview, rating}: CardProps) => {
         height={wHeight - height}
         borderTopLeftRadius={"m"}
         borderTopRightRadius={"m"}
+        paddingHorizontal={"m"}
       >
         <Text marginTop={"s"} variant={"movieCardTitle"}>{title}</Text>
         <Box
-          padding={"m"}
+          paddingVertical={"m"}
           overflow={"hidden"}
         >
           <Text
