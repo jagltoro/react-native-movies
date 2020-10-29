@@ -1,1 +1,1 @@
-export {default} from './Landing';
+export {default, assets} from './Landing';
