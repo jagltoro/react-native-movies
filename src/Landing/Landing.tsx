@@ -30,7 +30,7 @@ const categories: CardProps[] = [
     screen: "NowPlaying",
     align: "left"
   }
-]
+];
 
 const Landing = () => {
   const insets = useSafeAreaInsets();
@@ -57,5 +57,5 @@ const Landing = () => {
     </ScrollView>
   );
 };
-
+export const assets = categories.map(category => category.image);
 export default Landing;
