@@ -2,10 +2,10 @@ import React from 'react';
 import {Dimensions, Image} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {DrawerNavigationProp} from "@react-navigation/drawer";
+import {TouchableOpacity} from "react-native-gesture-handler";
 
 import {Box, Text, useTheme} from "../Helpers";
 import {HomeRoutes} from "../Helpers/Navigation";
-import {TouchableHighlight} from "react-native-gesture-handler";
 
 const {width} = Dimensions.get("window");
 
@@ -20,7 +20,11 @@ const Card = ({title, image, align, screen}: CardProps) => {
   const theme = useTheme();
   const {navigate} = useNavigation<DrawerNavigationProp<HomeRoutes, "Landing">>();
   return (
-    <TouchableHighlight onPress={() => navigate(screen)}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() => navigate(screen)}
+      style={{height: 200, marginBottom: 20}}
+    >
       <Box
         paddingTop={"xl"}
         paddingHorizontal={"m"}
@@ -56,7 +60,7 @@ const Card = ({title, image, align, screen}: CardProps) => {
           {title}
         </Text>
       </Box>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
