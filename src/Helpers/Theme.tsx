@@ -119,6 +119,7 @@ export const theme = createTheme({
     s: 8,
     m: 16,
     l: 24,
+    ml: 34,
     xl: 40,
   },
   breakpoints: { },
@@ -134,6 +135,12 @@ export const theme = createTheme({
       fontSize: 48,
       fontFamily: "Dosis-Bold",
       color: "text",
+    },
+    movieCardTitle: {
+      fontSize: 32,
+      fontFamily: "Dosis-Bold",
+      color: "text",
+      textAlign: "center"
     },
     text:{
       fontSize: 24,

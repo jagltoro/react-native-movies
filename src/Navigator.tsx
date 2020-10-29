@@ -1,12 +1,12 @@
 import React from "react";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 
-import NowPlaying from "./Home/NowPlaying";
+import NowPlaying from "./NowPlaying/NowPlaying";
 import {HomeRoutes} from "./Helpers/Navigation";
 import Landing from "./Landing";
 // import DrawerContent, {DRAWER_WIDTH} from "./Drawer";
 
-// export {assets} from "./Drawer";
+export {assets} from "./Landing";
 
 const Drawer = createDrawerNavigator<HomeRoutes>();
 export const HomeNavigator = () => (
