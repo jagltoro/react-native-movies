@@ -1,12 +1,25 @@
 import {RouteProp} from '@react-navigation/native';
-import {DrawerNavigationProp} from "@react-navigation/drawer";
+import {StackNavigationProp} from "@react-navigation/stack";
 
-export interface HomeNavigationProps< RouteName extends keyof HomeRoutes > {
-  navigation: DrawerNavigationProp<HomeRoutes, RouteName>;
-  route: RouteProp<HomeRoutes,RouteName>
+export interface HomeNavigationProps< RouteName extends keyof TabRoutes > {
+  navigation: StackNavigationProp<TabRoutes, RouteName>;
+  route: RouteProp<TabRoutes,RouteName>
 }
 
-export type HomeRoutes = {
-  Landing: undefined;
-  NowPlaying: undefined;
+export type RootStackParamList = {
+  Root: undefined;
+  NotFound: undefined;
+};
+
+export type TabRoutes = {
+  Cinema: undefined;
+  Search: undefined;
 }
+
+export type CinemaParamList = {
+  Cinema: undefined;
+};
+
+export type SearchParamList = {
+  Search: undefined;
+};

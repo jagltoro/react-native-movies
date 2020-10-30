@@ -1,16 +1,15 @@
 import React from 'react';
 import {Image} from 'react-native';
-import {Box, Text, useTheme} from "../Helpers";
-import {Feather as Icon} from "@expo/vector-icons";
+import {useTheme} from "../Helpers";
 
 interface PosterProps {
   height: number;
-  width: number;
   image: string;
 }
 
-const Poster = ({height, width, image}: PosterProps) => {
+const Poster = ({height, image}: PosterProps) => {
   const theme = useTheme();
+  const width = height * (2 / 3);
   return (
       <Image
         source={{uri: `https://image.tmdb.org/t/p/w500${image}`}}

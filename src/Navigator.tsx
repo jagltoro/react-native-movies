@@ -1,24 +1,14 @@
 import React from "react";
-import {createDrawerNavigator} from "@react-navigation/drawer";
+import {createStackNavigator} from "@react-navigation/stack";
 
-import NowPlaying from "./NowPlaying/NowPlaying";
-import {HomeRoutes} from "./Helpers/Navigation";
-import Landing from "./Landing";
-// import DrawerContent, {DRAWER_WIDTH} from "./Drawer";
+import {RootStackParamList} from "./Helpers/Navigation";
+import Navigator from "./Components/TabNavigator";
+import NotFoundScreen from "./Screens/NotFound";
 
-export {assets} from "./Landing";
-
-const Drawer = createDrawerNavigator<HomeRoutes>();
+const Stack = createStackNavigator<RootStackParamList>();
 export const HomeNavigator = () => (
-  <Drawer.Navigator
-  >
-    <Drawer.Screen
-      name="Landing"
-      component={Landing}
-    />
-    <Drawer.Screen
-      name="NowPlaying"
-      component={NowPlaying}
-    />
-  </Drawer.Navigator>
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Root" component={Navigator} />
+    <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+  </Stack.Navigator>
 );

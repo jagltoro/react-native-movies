@@ -1,6 +1,6 @@
 import React from 'react';
 import {Feather as Icon} from "@expo/vector-icons";
-import {Box, Text} from "../Helpers";
+import {Box, Text} from "../../Helpers";
 
 interface RatingProps {
   rating: number;
@@ -22,7 +22,7 @@ const Rating = ({rating}: RatingProps) => {
         name={"star"}
         color={"black"}
       />
-      <Text marginLeft={"s"}>
+      <Text marginLeft={"s"} variant={"ribbon"}>
         {rating}
       </Text>
     </Box>

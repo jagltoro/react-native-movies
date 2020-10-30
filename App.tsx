@@ -5,9 +5,8 @@ import {ThemeProvider} from '@shopify/restyle';
 import {theme} from "./src/Helpers/Theme";
 import {LoadAssets} from "./src/Helpers";
 import {SafeAreaProvider} from "react-native-safe-area-context";
-import {HomeNavigator, assets as LandingAssets} from "./src/Navigator";
+import {HomeNavigator} from "./src/Navigator";
 
-const assets:any = [...LandingAssets]
 const fonts = {
   "Dosis-Regular": require("./assets/fonts/Dosis-Regular.otf"),
   "Dosis-Bold": require("./assets/fonts/Dosis-Bold.otf"),
@@ -20,7 +19,7 @@ const fonts = {
 export default function App() {
   return (
     <ThemeProvider {...{theme}}>
-      <LoadAssets {...{fonts, assets}}>
+      <LoadAssets {...{fonts}}>
         <SafeAreaProvider>
             <HomeNavigator/>
         </SafeAreaProvider>

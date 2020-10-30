@@ -1,11 +1,13 @@
 import React from 'react';
-import {getMoviesFromApi} from '../Actions/Movies';
+import {Dimensions} from "react-native";
 import {ScrollView} from "react-native-gesture-handler";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
-import Card from "./Card";
-import {Dimensions} from "react-native";
 
-const { width } = Dimensions.get('window');
+import {getMoviesFromApi} from '../../Actions/Movies';
+import Card from "./Card";
+
+// import Rating from "./Rating";
+const { height } = Dimensions.get('window');
 
 let moviesData: any = [];
 
@@ -15,25 +17,20 @@ let moviesData: any = [];
   return getMovies;
 }());
 
-
-const NowPLaying = () => {
+const Cinema = () => {
   const insets = useSafeAreaInsets();
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}
-      horizontal
-      style={{paddingTop: insets.top}}
-      decelerationRate={"fast"}
-      snapToInterval={width}
-      snapToAlignment={"center"}
+      style={{paddingTop: insets.top, height: height + insets.bottom}}
     >
       {
         moviesData.map((movie: any) => (
           <Card
             key={movie.id}
             title={movie.title}
+            // ribbon={<Rating rating={movie.vote_average} />}
             rating={movie.vote_average}
-            overview={movie.overview}
             image={movie.poster_path}
           />
         ))
@@ -42,4 +39,4 @@ const NowPLaying = () => {
   );
 };
 
-export default NowPLaying;
+export default Cinema;
