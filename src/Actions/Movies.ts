@@ -1,7 +1,15 @@
-const apiKey = 'e5db45ddf9c35cbdf6dc447371768281';
+import { API_KEY } from "@env";
 
-export const getMoviesFromApi = async () => {
-  let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?&api_key=${apiKey}`);
+export const getMovies = async () => {
+  let response = await fetch(
+    `https://api.themoviedb.org/3/movie/now_playing?&api_key=${API_KEY}`
+  );
   return await response.json();
-}
+};
 
+export const getGenres = async () => {
+  let response = await fetch(
+    `https://api.themoviedb.org/3/genre/movie/list?&api_key=${API_KEY}`
+  );
+  return await response.json();
+};
