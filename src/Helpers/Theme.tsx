@@ -104,17 +104,15 @@ const palette = {
 };
 
 const fontSize = {
-  xSmall: PixelRatio.get() <= 2 ? 12 : 16,
-  small: PixelRatio.get() <= 2 ? 18 : 24,
-  medium: PixelRatio.get() <= 2 ? 24 : 32,
+  small: PixelRatio.get() <= 2 ? 12 : 16,
+  medium: PixelRatio.get() <= 2 ? 16 : 24,
   large: PixelRatio.get() <= 2 ? 32 : 48
 }
-
 
 export const theme = createTheme({
   colors: {
     mainBackground: palette["color-basic-200"],
-    highlightBackground: palette["color-basic-300"],
+    highlightBackground: palette["color-basic-transparent-300"],
     border: palette["color-basic-900"],
     text: palette["color-basic-800"],
     cardTitles: palette["color-basic-200"],
@@ -147,7 +145,6 @@ export const theme = createTheme({
       fontSize: fontSize.medium,
       fontFamily: "Dosis-Bold",
       color: "text",
-      textAlign: "center"
     },
     text:{
       fontSize: fontSize.small,
@@ -155,7 +152,7 @@ export const theme = createTheme({
       color: "text",
     },
     ribbon:{
-      fontSize: fontSize.xSmall,
+      fontSize: fontSize.small,
       fontFamily: "Nunito-Regular",
       color: "text",
     },
