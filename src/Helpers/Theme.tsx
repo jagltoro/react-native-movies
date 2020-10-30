@@ -1,5 +1,5 @@
 import {createText, createBox, createTheme, useTheme as useReTheme} from '@shopify/restyle'
-import {ImageStyle, TextStyle, ViewStyle} from "react-native";
+import {ImageStyle, TextStyle, ViewStyle, PixelRatio} from "react-native";
 
 const palette = {
   "color-primary-100": "#F2F6FF",
@@ -103,6 +103,13 @@ const palette = {
   "transparent": "transparent",
 };
 
+const fontSize = {
+  xSmall: PixelRatio.get() <= 2 ? 12 : 16,
+  small: PixelRatio.get() <= 2 ? 18 : 24,
+  medium: PixelRatio.get() <= 2 ? 24 : 32,
+  large: PixelRatio.get() <= 2 ? 32 : 48
+}
+
 
 export const theme = createTheme({
   colors: {
@@ -132,18 +139,23 @@ export const theme = createTheme({
   },
   textVariants: {
     title:{
-      fontSize: 48,
+      fontSize: fontSize.large,
       fontFamily: "Dosis-Bold",
       color: "text",
     },
     movieCardTitle: {
-      fontSize: 32,
+      fontSize: fontSize.medium,
       fontFamily: "Dosis-Bold",
       color: "text",
       textAlign: "center"
     },
     text:{
-      fontSize: 24,
+      fontSize: fontSize.small,
+      fontFamily: "Nunito-Regular",
+      color: "text",
+    },
+    ribbon:{
+      fontSize: fontSize.xSmall,
       fontFamily: "Nunito-Regular",
       color: "text",
     },
