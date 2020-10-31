@@ -3,15 +3,18 @@ import {Image} from "react-native";
 
 import {Box, Text, useTheme} from "../../Helpers";
 import Rating from "./Rating";
+import {APIGenresProps} from "../../interfaces";
 
 interface CardProps {
   image: string;
   title: string;
   rating: number;
+  genres: APIGenresProps[]
 }
 
-const Card = ({image, title, rating}: CardProps) => {
+const Card = ({image, title, rating, genres}: CardProps) => {
   const theme = useTheme();
+  const genresText = genres.map((genre) => genre.name).slice(0,3);
   return (
     <Box
       flexDirection={"row"}
@@ -24,9 +27,9 @@ const Card = ({image, title, rating}: CardProps) => {
           style={{
             height: 150,
             width: 100,
-            borderRadius: theme.borderRadii.m,
-            position: "absolute",
-            left: theme.spacing.s
+            borderTopLeftRadius: theme.borderRadii.s,
+            borderBottomLeftRadius: theme.borderRadii.s,
+            position: "absolute"
           }}
         />
       </Box>
@@ -34,14 +37,14 @@ const Card = ({image, title, rating}: CardProps) => {
       <Box
         backgroundColor={"highlightBackground"}
         paddingHorizontal={"m"}
-        marginTop={"m"}
         borderRadius={"s"}
         height={150}
         zIndex={1}
         width={'100%'}
       >
-        <Box style={{marginLeft: 100}}>
-          <Text variant={"movieCardTitle"}>{title}</Text>
+        <Box style={{marginLeft: 95}}>
+          <Text variant={"movieCardTitle"} numberOfLines={2}>{title}</Text>
+          <Text variant={"genres"}>{genresText.join(" | ")}</Text>
         </Box>
       </Box>
     </Box>

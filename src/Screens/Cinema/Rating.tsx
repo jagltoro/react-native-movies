@@ -17,14 +17,13 @@ const Rating = ({rating}: RatingProps) => {
     <Box
       position={"absolute"}
       backgroundColor={"warning"}
-      bottom={theme.spacing.m}
-      left={theme.spacing.m}
+      bottom={0}
+      left={theme.spacing.s}
       width={100}
       justifyContent={"center"}
       flexDirection={"row"}
       alignItems={"center"}
       borderBottomLeftRadius={"s"}
-      borderBottomRightRadius={"s"}
       zIndex={3}
     >
       { Array(ratingToStars).fill(0).map((_,i) => <Icon key={i} name={"star"} size={12} /> ) }
