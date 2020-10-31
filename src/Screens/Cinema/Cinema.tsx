@@ -1,40 +1,55 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions} from "react-native";
 import {ScrollView} from "react-native-gesture-handler";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 
-import {getMoviesFromApi} from '../../Actions/Movies';
+import {getMovies, getGenres} from '../../Actions/Movies';
 import Card from "./Card";
+import {Text} from "../../Helpers";
 
-// import Rating from "./Rating";
+import {APIGenresProps} from "../../interfaces";
+
 const { height } = Dimensions.get('window');
-
-let moviesData: any = [];
-
-(async function getMovies() {
-  const moviesDataRaw = await getMoviesFromApi();
-  moviesData = moviesDataRaw.results;
-  return getMovies;
-}());
 
 const Cinema = () => {
   const insets = useSafeAreaInsets();
+  const [movies, setMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const moviesData = await getMovies();
+      const genresData = await getGenres();
+      setGenres(genresData.genres);
+      setMovies(moviesData.results);
+    }
+    fetchProducts();
+  }, []);
+
+  const getTextGenres = (genresIds: number[]) => {
+    return genres.filter((genre: APIGenresProps) => {
+      return genresIds.includes(genre.id);
+    });
+  }
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}
       style={{paddingTop: insets.top, height: height + insets.bottom}}
     >
-      {
-        moviesData.map((movie: any) => (
+      { movies.length > 0 && movies.map((movie: any) => {
+        const textGenres = getTextGenres(movie.genre_ids)
+        return (
           <Card
             key={movie.id}
             title={movie.title}
-            // ribbon={<Rating rating={movie.vote_average} />}
             rating={movie.vote_average}
             image={movie.poster_path}
+            genres={textGenres}
           />
-        ))
+        )
+      })
       }
+      { !movies.length && <Text>LOADING??</Text>}
     </ScrollView>
   );
 };
