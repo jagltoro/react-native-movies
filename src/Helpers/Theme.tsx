@@ -105,7 +105,7 @@ const palette = {
 
 const fontSize = {
   small: PixelRatio.get() <= 2 ? 12 : 16,
-  medium: PixelRatio.get() <= 2 ? 16 : 24,
+  medium: PixelRatio.get() <= 2 ? 20 : 28,
   large: PixelRatio.get() <= 2 ? 32 : 48
 }
 
@@ -118,7 +118,8 @@ export const theme = createTheme({
     cardTitles: palette["color-basic-200"],
     primary: palette["color-primary-500"],
     warning: palette["color-warning-500"],
-    danger: palette["color-danger-500"]
+    danger: palette["color-danger-500"],
+    genresText: palette["color-basic-600"]
   },
   spacing: {
     s: 8,
@@ -151,10 +152,10 @@ export const theme = createTheme({
       fontFamily: "Nunito-Regular",
       color: "text",
     },
-    ribbon:{
+    genres:{
       fontSize: fontSize.small,
       fontFamily: "Nunito-Regular",
-      color: "text",
+      color: "genresText",
     },
   }
 });
