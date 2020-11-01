@@ -118,6 +118,7 @@ export const theme = createTheme({
     cardTitles: palette["color-basic-200"],
     primary: palette["color-primary-500"],
     warning: palette["color-warning-500"],
+    rating: palette["color-warning-600"],
     danger: palette["color-danger-500"],
     genresText: palette["color-basic-600"]
   },
