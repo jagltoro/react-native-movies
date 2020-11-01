@@ -9,16 +9,17 @@ interface CardProps {
   image: string;
   title: string;
   rating: number;
-  genres: APIGenresProps[]
+  genres: APIGenresProps[];
+  last?: boolean;
 }
 
-const Card = ({image, title, rating, genres}: CardProps) => {
+const Card = ({image, title, rating, genres, last}: CardProps) => {
   const theme = useTheme();
   const genresText = genres.map((genre) => genre.name).slice(0,3);
   return (
     <Box
       flexDirection={"row"}
-      marginBottom={"m"}
+      marginBottom={last ? "l" : "m" }
       paddingHorizontal={"s"}
     >
       <Box style={{zIndex: 2}}>
@@ -42,7 +43,7 @@ const Card = ({image, title, rating, genres}: CardProps) => {
         zIndex={1}
         width={'100%'}
       >
-        <Box style={{marginLeft: 95}}>
+        <Box style={{marginLeft: 95}} marginTop="m">
           <Text variant={"movieCardTitle"} numberOfLines={2}>{title}</Text>
           <Text variant={"genres"}>{genresText.join(" | ")}</Text>
         </Box>
