@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions} from "react-native";
 import {ScrollView} from "react-native-gesture-handler";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 
+
 import {getMovies, getGenres} from '../../Actions/Movies';
+import {Text, storeData, getData} from "../../Helpers";
+
 import Card from "./Card";
-import {Text} from "../../Helpers";
 
 import {APIGenresProps} from "../../interfaces";
-
-const { height } = Dimensions.get('window');
 
 const Cinema = () => {
   const insets = useSafeAreaInsets();
@@ -19,9 +18,19 @@ const Cinema = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       const moviesData = await getMovies();
-      const genresData = await getGenres();
-      setGenres(genresData.genres);
       setMovies(moviesData.results);
+      getData().then(async (genresData) => {
+        if(genresData){
+          const data = JSON.parse(genresData);
+          if(data.genres){
+            setGenres(data.genres);
+          }
+        }else{
+          const genresDataApi = await getGenres();
+          storeData(genresDataApi);
+          setGenres(genresDataApi.genres);
+        }
+      });
     }
     fetchProducts();
   }, []);
@@ -34,10 +43,11 @@ const Cinema = () => {
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}
-      style={{paddingTop: insets.top, height: height + insets.bottom}}
+      style={{paddingTop: insets.top, marginBottom:16}}
     >
-      { movies.length > 0 && movies.map((movie: any) => {
-        const textGenres = getTextGenres(movie.genre_ids)
+      { movies.length > 0 && movies.map((movie: any, index) => {
+        const textGenres = getTextGenres(movie.genre_ids);
+        const last = index === movies.length -1;
         return (
           <Card
             key={movie.id}
@@ -45,6 +55,7 @@ const Cinema = () => {
             rating={movie.vote_average}
             image={movie.poster_path}
             genres={textGenres}
+            {...{last}}
           />
         )
       })
