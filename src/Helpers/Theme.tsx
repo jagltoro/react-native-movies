@@ -120,7 +120,8 @@ export const theme = createTheme({
     warning: palette["color-warning-500"],
     rating: palette["color-warning-600"],
     danger: palette["color-danger-500"],
-    genresText: palette["color-basic-600"]
+    genresText: palette["color-basic-600"],
+    headerText: palette["color-basic-900"]
   },
   spacing: {
     s: 8,
@@ -140,6 +141,11 @@ export const theme = createTheme({
   textVariants: {
     title:{
       fontSize: fontSize.large,
+      fontFamily: "Dosis-Bold",
+      color: "text",
+    },
+    headerTitle: {
+      fontSize: fontSize.medium,
       fontFamily: "Dosis-Bold",
       color: "text",
     },
