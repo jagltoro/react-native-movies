@@ -13,3 +13,17 @@ export const getGenres = async () => {
   );
   return await response.json();
 };
+
+export const getDetails = async (id:number) => {
+  let response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?&api_key=${API_KEY}`
+  );
+  return await response.json();
+};
+
+export const getCredits = async (id:number) => {
+  let response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits?&api_key=${API_KEY}`
+  );
+  return await response.json();
+};
