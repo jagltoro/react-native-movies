@@ -14,7 +14,7 @@ interface HeaderProps {
     backgroundColor: keyof Theme["colors"];
     onPress: () => void
   },
-  title: string;
+  title?: string;
   color: keyof Theme["colors"];
   backgroundColor: keyof Theme["colors"];
   right?: {
@@ -32,7 +32,8 @@ const Header = ({left, right, title, color, backgroundColor}: HeaderProps) => {
       justifyContent={left && right ? 'space-between' : "center"}
       padding={"m"}
       flexDirection={"row"}
-      style={{paddingTop: insets.top}}
+      zIndex={10}
+      style={{paddingTop: insets.top*1.5}}
       {...{backgroundColor}}
     >
       {
@@ -46,11 +47,14 @@ const Header = ({left, right, title, color, backgroundColor}: HeaderProps) => {
           iconRatio={0.5}
         />
       }
-      <Text
-        variant={"headerTitle"}
-        color={color}>
-        {title.toUpperCase()}
-      </Text>
+      { 
+        title &&
+        <Text
+          variant={"headerTitle"}
+          color={color}>
+          {title.toUpperCase()}
+        </Text>
+      }
       {
         right && 
         <RoundedIconButton
