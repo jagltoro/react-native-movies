@@ -105,6 +105,7 @@ const palette = {
 
 const fontSize = {
   small: PixelRatio.get() <= 2 ? 12 : 16,
+  mSmall: PixelRatio.get() <= 2 ? 14 : 20,
   medium: PixelRatio.get() <= 2 ? 20 : 28,
   large: PixelRatio.get() <= 2 ? 32 : 48
 }
@@ -121,7 +122,9 @@ export const theme = createTheme({
     rating: palette["color-warning-600"],
     danger: palette["color-danger-500"],
     genresText: palette["color-basic-600"],
-    headerText: palette["color-basic-900"]
+    headerText: palette["color-basic-900"],
+    divider: palette["color-basic-400"],
+    transparent: palette["transparent"]
   },
   spacing: {
     s: 8,
@@ -149,9 +152,26 @@ export const theme = createTheme({
       fontFamily: "Dosis-Bold",
       color: "text",
     },
+    movieDetailsTitle: {
+      fontSize: fontSize.large,
+      fontFamily: "Dosis-Bold",
+      color: "text",
+    },
     movieCardTitle: {
       fontSize: fontSize.medium,
       fontFamily: "Dosis-Bold",
+      color: "text",
+    },
+
+    
+    overview:{
+      fontSize: fontSize.mSmall,
+      fontFamily: "Nunito-Regular",
+      color: "text",
+    },
+    castName:{
+      fontSize: fontSize.mSmall,
+      fontFamily: "Nunito-Regular",
       color: "text",
     },
     text:{
@@ -159,7 +179,22 @@ export const theme = createTheme({
       fontFamily: "Nunito-Regular",
       color: "text",
     },
+    subtitles:{
+      fontSize: fontSize.small,
+      fontFamily: "Nunito-Regular",
+      color: "genresText",
+    },
+    castCharacter:{
+      fontSize: fontSize.small,
+      fontFamily: "Nunito-Regular",
+      color: "genresText",
+    },
     genres:{
+      fontSize: fontSize.small,
+      fontFamily: "Nunito-Regular",
+      color: "genresText",
+    },
+    runtime:{
       fontSize: fontSize.small,
       fontFamily: "Nunito-Regular",
       color: "genresText",
