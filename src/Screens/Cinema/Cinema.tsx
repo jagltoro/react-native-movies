@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView} from "react-native-gesture-handler";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
-
 
 import {getMovies, getGenres} from '../../Actions/Movies';
 import {Text, storeData, getData, Box} from "../../Helpers";
@@ -10,14 +8,14 @@ import Card from "./Card";
 
 import {APIGenresProps} from "../../interfaces";
 import Header from '../../Components/Header';
+import { CinemaNavigationProps } from '../../Helpers/Navigation';
 
-const Cinema = () => {
-  const insets = useSafeAreaInsets();
+const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchMovies = async () => {
       const moviesData = await getMovies();
       setMovies(moviesData.results);
       getData().then(async (genresData) => {
@@ -33,7 +31,7 @@ const Cinema = () => {
         }
       });
     }
-    fetchProducts();
+    fetchMovies();
   }, []);
 
   const getTextGenres = (genresIds: number[]) => {
@@ -49,7 +47,7 @@ const Cinema = () => {
         backgroundColor="mainBackground"
       />
       <ScrollView
-        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         style={{marginBottom:16}}
       >
         { movies.length > 0 && movies.map((movie: any, index) => {
@@ -62,6 +60,9 @@ const Cinema = () => {
               rating={movie.vote_average}
               image={movie.poster_path}
               genres={textGenres}
+              navigateTo={() => navigation.navigate('Details', {
+                id: movie.id
+              })}
               {...{last}}
             />
           )
