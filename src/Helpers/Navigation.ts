@@ -6,6 +6,11 @@ export interface HomeNavigationProps< RouteName extends keyof TabRoutes > {
   route: RouteProp<TabRoutes,RouteName>
 }
 
+export interface CinemaNavigationProps< RouteName extends keyof CinemaParamList > {
+  navigation: StackNavigationProp<CinemaParamList, RouteName>;
+  route: RouteProp<CinemaParamList, RouteName>
+}
+
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
@@ -18,6 +23,7 @@ export type TabRoutes = {
 
 export type CinemaParamList = {
   Cinema: undefined;
+  Details:  { id: number;};
 };
 
 export type SearchParamList = {

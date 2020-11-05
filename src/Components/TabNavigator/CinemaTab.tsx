@@ -3,6 +3,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {CinemaParamList} from "../../Helpers/Navigation";
 
 import Cinema from "../../Screens/Cinema";
+import Details from "../../Screens/Details";
 
 const CinemaTabStack = createStackNavigator<CinemaParamList>();
 
@@ -12,6 +13,10 @@ export function CinemaTabNavigator() {
       <CinemaTabStack.Screen
         name="Cinema"
         component={Cinema}
+      />
+      <CinemaTabStack.Screen
+        name="Details"
+        component={Details}
       />
     </CinemaTabStack.Navigator>
   );
