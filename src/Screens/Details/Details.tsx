@@ -74,19 +74,13 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
               marginHorizontal="m"
             >
               <Box
-                style={{
-                  borderBottomWidth: 1,
-                  borderBottomColor: theme.colors["divider"],
-                }}
                 paddingBottom="s"
+                alignItems="center"
+                justifyContent="center"
               >
                 <Text variant="movieDetailsTitle">{details.title}</Text>
-                <Box flexDirection="row">
-                  <Text variant="runtime" marginRight="s">
-                    {getMoveRuntime(details.runtime)}
-                  </Text>
-                  <Text variant="runtime"> | </Text>
-                  <Text variant="genres" marginLeft="s">
+                <Box flexDirection="row" justifyContent="center">
+                  <Text variant="genres">
                     {details.genres
                       .map((genre) => genre.name)
                       .slice(0, 5)
@@ -94,7 +88,29 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
                   </Text>
                 </Box>
               </Box>
-              <Box>
+              <Box flexDirection="row" justifyContent="space-around">
+                <Panel title="Year" marginTop="s">
+                  <Text variant="text">
+                    {new Date(details.release_date).getFullYear()}
+                  </Text>
+                </Panel>
+                <Panel title="Country" marginTop="s">
+                  <Text variant="text">
+                    {details.production_countries.map(country => country.iso_3166_1).join(" | ")}
+                  </Text>
+                </Panel>
+                <Panel title="Runtime" marginTop="s">
+                  <Text variant="text">
+                    {getMoveRuntime(details.runtime)}
+                  </Text>
+                </Panel>
+              </Box>
+
+              <Panel
+                title="Cast"
+                marginTop="m"
+                hasBorder
+              >
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   {credits &&
                     credits.cast.map((actor, index) => (
@@ -106,35 +122,31 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
                       />
                     ))}
                 </ScrollView>
-              </Box>
+              </Panel>
+
               <Panel
                 title="Plot"
-                borderStyle={{
-                  width: 1,
-                  color: theme.colors["divider"],
-                }}
+                marginTop="m"
+                hasBorder
               >
                 <Text variant="overview">{details.overview}</Text>
               </Panel>
 
               <Panel
                 title="Producers"
-                borderStyle={{
-                  width: 1,
-                  color: theme.colors["divider"],
-                }}
+                marginTop="m"
+                hasBorder
               >
-                {
-                  details.production_companies
-                  .map((company) => (
-                    <Box key={company.id} flexDirection="row" alignItems="center" 
-                    paddingVertical="s">
-                      <Text variant="overview">
-                        {company.name}
-                      </Text>
-                    </Box>
-                  ))
-                }
+                {details.production_companies.map((company) => (
+                  <Box
+                    key={company.id}
+                    flexDirection="row"
+                    alignItems="center"
+                    paddingVertical="s"
+                  >
+                    <Text variant="overview">{company.name}</Text>
+                  </Box>
+                ))}
               </Panel>
             </Box>
           </>

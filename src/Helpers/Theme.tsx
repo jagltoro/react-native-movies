@@ -155,7 +155,7 @@ export const theme = createTheme({
     movieDetailsTitle: {
       fontSize: fontSize.large,
       fontFamily: "Dosis-Bold",
-      color: "text",
+      color: "text"
     },
     movieCardTitle: {
       fontSize: fontSize.medium,
