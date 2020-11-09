@@ -6,15 +6,17 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface BannerProps {
   image: string;
+  loaded: (value:boolean) => void;
 }
 
-const Banner = ({ image }: BannerProps) => {
+const Banner = ({ image, loaded }: BannerProps) => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const {height} = Dimensions.get("window");    
   return (
     <>
       <Image
+        onLoad={() => loaded(true)}
         source={{
           uri: image,
         }}
