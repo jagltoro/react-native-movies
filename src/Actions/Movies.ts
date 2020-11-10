@@ -7,6 +7,13 @@ export const getMovies = async () => {
   return await response.json();
 };
 
+export const getUpcomingMovies = async () => {
+  let response = await fetch(
+    `https://api.themoviedb.org/3/movie/upcoming?&api_key=${API_KEY}`
+  );
+  return await response.json();
+};
+
 export const getGenres = async () => {
   let response = await fetch(
     `https://api.themoviedb.org/3/genre/movie/list?&api_key=${API_KEY}`
