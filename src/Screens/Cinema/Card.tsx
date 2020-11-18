@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Image } from "react-native";
 
 import { Box, Text, useTheme } from "../../Helpers";
@@ -15,7 +15,10 @@ interface CardProps {
   last?: boolean;
 }
 
+const placeholder =  require("#/images/poster-placeholder.png")
+
 const Card = ({ image, title, rating, genres, navigateTo, last }: CardProps) => {
+  const [loaded, setLoaded] = useState(false);
   const theme = useTheme();
   const genresText = genres.map((genre) => genre.name).slice(0, 3);
   return (
@@ -26,8 +29,23 @@ const Card = ({ image, title, rating, genres, navigateTo, last }: CardProps) => 
         paddingHorizontal={"s"}
       >
         <Box style={{ zIndex: 2 }}>
+          {
+            !loaded && 
+            <Image
+              source={placeholder}
+              style={{
+                height: 150,
+                width: 100,
+                resizeMode: "cover",
+                borderTopLeftRadius: theme.borderRadii.s,
+                borderBottomLeftRadius: theme.borderRadii.s,
+                position: "absolute",
+              }}
+            />
+          }
           <Image
             source={{ uri: `https://image.tmdb.org/t/p/w500${image}` }}
+            onLoad={() =>setLoaded(true)}
             style={{
               height: 150,
               width: 100,
