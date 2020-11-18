@@ -4,6 +4,7 @@ import {CinemaParamList} from "../../Helpers/Navigation";
 
 import Cinema from "../../Screens/Cinema";
 import Details from "../../Screens/Details";
+import Actor from "../../Screens/Actor";
 
 const CinemaTabStack = createStackNavigator<CinemaParamList>();
 
@@ -17,6 +18,10 @@ export function CinemaTabNavigator() {
       <CinemaTabStack.Screen
         name="Details"
         component={Details}
+      />
+      <CinemaTabStack.Screen
+        name="Actor"
+        component={Actor}
       />
     </CinemaTabStack.Navigator>
   );

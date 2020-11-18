@@ -24,6 +24,7 @@ export type TabRoutes = {
 export type CinemaParamList = {
   Cinema: undefined;
   Details:  { id: number;};
+  Actor:  { id: number;};
 };
 
 export type SearchParamList = {
