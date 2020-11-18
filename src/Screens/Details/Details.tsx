@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Dimensions, Image } from "react-native";
+import { Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-import { getDetails, getCredits } from "../../Actions/Movies";
+import { getDetails } from "../../Actions/Movies";
 import { MovieDetailsProps } from "../../Interfaces/MovieDetails";
 import { CastProps } from "../../Interfaces/Cast";
 
@@ -10,7 +10,7 @@ import Header from "../../Components/Header";
 import Loader from "../../Components/Loader";
 
 import { CinemaNavigationProps } from "../../Helpers/Navigation";
-import { Box, Text, useTheme } from "../../Helpers";
+import { Box, Text } from "../../Helpers";
 
 import Banner from "./Banner";
 import Cast from "./Cast";
@@ -23,7 +23,6 @@ const getMoveRuntime = (minutes: number) => {
 const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
   const { id } = route.params;
   const { height } = Dimensions.get("window");
-  const theme = useTheme();
 
   const [details, setDetails] = useState<MovieDetailsProps>();
   const [credits, setCredits] = useState<CastProps>();
@@ -33,9 +32,7 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
     const fetchDetails = async () => {
       const details = await getDetails(id);
       setDetails(details);
-
-      const credits = await getCredits(id);
-      setCredits(credits);
+      setCredits(details.credits);
     };
     fetchDetails();
   }, []);
@@ -116,6 +113,9 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
                     credits.cast.map((actor, index) => (
                       <Cast
                         key={index}
+                        navigateTo={() => navigation.navigate('Actor', {
+                          id: actor.id
+                        })}
                         name={actor.name}
                         image={actor.profile_path}
                         character={actor.character}
