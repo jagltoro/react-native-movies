@@ -23,7 +23,7 @@ export const getGenres = async () => {
 
 export const getDetails = async (id:number) => {
   let response = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?&api_key=${API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}?&api_key=${API_KEY}&append_to_response=credits`
   );
   return await response.json();
 };
