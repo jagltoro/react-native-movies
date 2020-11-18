@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, TouchableOpacity} from "react-native-gesture-handler";
+import {ScrollView} from "react-native-gesture-handler";
 
 import {getMovies, getUpcomingMovies, getGenres} from '../../Actions/Movies';
-import {Text, storeData, getData, Box,useTheme} from "../../Helpers";
+import {storeData, getData, Box} from "../../Helpers";
 
 import Card from "./Card";
 
@@ -10,11 +10,12 @@ import {APIGenresProps} from "../../interfaces";
 import Header from '../../Components/Header';
 import { CinemaNavigationProps } from '../../Helpers/Navigation';
 import { ActivityIndicator } from 'react-native';
+import Filters from './Filters';
 
 const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
-  const theme = useTheme();
+  const [active, setActive] = useState('nowShowing');
 
   useEffect(() => {
     setMovies([]);
@@ -38,11 +39,13 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
 
   const fetchNowPlaying = async () => {
     setMovies([]);
+    setActive('nowShowing');
     const moviesData = await getMovies();
     setMovies(moviesData.results);
   }
   const fetchComingSoon = async () => {
     setMovies([]);
+    setActive('comingSoon');
     const moviesData = await getUpcomingMovies();
     setMovies(moviesData.results);
   }
@@ -52,6 +55,21 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
       return genresIds.includes(genre.id);
     });
   }
+
+
+  const filterButtons = [
+    {
+      fetchFunction: fetchNowPlaying,
+      text: "Now Showing",
+      id: "nowShowing"
+    },
+    {
+      fetchFunction: fetchComingSoon,
+      text: "Coming Soon",
+      id: "comingSoon"
+    }
+  ]
+
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <Header
@@ -59,22 +77,7 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
         color={"headerText"}
         backgroundColor="mainBackground"
       />
-        <Box flexDirection="row" justifyContent="space-around" marginBottom="l">
-          <TouchableOpacity activeOpacity={0.7} onPress={() => fetchNowPlaying()} style={{
-            borderRadius: theme.spacing['m']
-          }}>
-            <Box padding="s" borderRadius="m" backgroundColor="primary">
-              <Text color="mainBackground">Now Showing</Text>
-            </Box>
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.7} onPress={() => fetchComingSoon()} style={{
-            borderRadius: theme.spacing['m']
-          }}>
-            <Box padding="s" borderRadius="m" backgroundColor="mainBackground" borderWidth={1} borderColor="primary">
-              <Text color="text">Coming Soon</Text>
-            </Box>
-          </TouchableOpacity>
-        </Box>
+        <Filters buttons={filterButtons} active={active} />
         { !movies.length && 
           <Box flex={1} justifyContent="center" alignItems="center">
             <ActivityIndicator size="large" color="#0000ff" style={{ zIndex: 11 }} />
