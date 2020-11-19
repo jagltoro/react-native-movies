@@ -96,7 +96,7 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
               rating={movie.vote_average}
               image={movie.poster_path}
               genres={textGenres}
-              navigateTo={() => navigation.navigate('Details', {
+              navigateTo={() => navigation.push('Details', {
                 id: movie.id
               })}
               {...{last}}
