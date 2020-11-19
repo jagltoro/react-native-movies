@@ -44,7 +44,7 @@ const Card = ({ image, title, rating, genres, navigateTo, last }: CardProps) => 
             />
           }
           <Image
-            source={{ uri: `https://image.tmdb.org/t/p/w500${image}` }}
+            source={{ uri: `https://image.tmdb.org/t/p/w154${image}` }}
             onLoad={() =>setLoaded(true)}
             style={{
               height: 150,
