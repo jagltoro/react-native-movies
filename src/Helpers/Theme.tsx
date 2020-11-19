@@ -162,6 +162,11 @@ export const theme = createTheme({
       fontFamily: "Dosis-Bold",
       color: "text",
     },
+    appearances: {
+      fontSize: fontSize.medium,
+      fontFamily: "Nunito-Bold",
+      color: "text",
+    },
 
     
     overview:{
