@@ -1,25 +1,24 @@
 import * as React from "react";
 import { Image, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useTheme } from "../../Helpers";
+import { Text, useTheme } from "../../Helpers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface BannerProps {
-  image: string;
+  image: string | undefined;
   loaded: (value:boolean) => void;
 }
+const placeholder =  require("#/images/backdrop-placeholder.png");
 
 const Banner = ({ image, loaded }: BannerProps) => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const {height} = Dimensions.get("window");    
+  const {height} = Dimensions.get("window");
   return (
     <>
       <Image
         onLoad={() => loaded(true)}
-        source={{
-          uri: image,
-        }}
+        source={ image ? { uri: `https://image.tmdb.org/t/p/original${image}`} : placeholder}
         style={{
           position: "absolute",
           height: height/3,

@@ -48,7 +48,7 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
                 icon: "arrow-left",
                 color: "headerText",
                 backgroundColor: "mainBackground",
-                onPress: () => navigation.navigate("Cinema"),
+                onPress: () => navigation.goBack(),
               }}
               title={"Movie Details"}
               color={"transparent"}
@@ -62,7 +62,7 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
             />
             <Banner
               loaded={setLoaded}
-              image={`https://image.tmdb.org/t/p/original${details.backdrop_path}`}
+              image={details.backdrop_path}
             />
             <Box
               style={{
@@ -113,7 +113,7 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
                     credits.cast.map((actor, index) => (
                       <Cast
                         key={index}
-                        navigateTo={() => navigation.navigate('Actor', {
+                        navigateTo={() => navigation.push('Actor', {
                           id: actor.id
                         })}
                         name={actor.name}
