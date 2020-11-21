@@ -27,6 +27,12 @@ export const getDetails = async (id:number) => {
   );
   return await response.json();
 };
+export const getSearch = async (query:string) => {
+  let response = await fetch(
+    `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}&append_to_response=credits`
+  );
+  return await response.json();
+};
 
 export const getCredits = async (id:number) => {
   let response = await fetch(

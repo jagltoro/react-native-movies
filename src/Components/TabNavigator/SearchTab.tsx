@@ -1,7 +1,9 @@
+import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import {SearchParamList} from "../../Helpers/Navigation";
-import Cinema from "../../Screens/Cinema";
-import * as React from "react";
+
+import Search from "../../Screens/Search";
+import Details from "../../Screens/Details";
 
 const SearchStack = createStackNavigator<SearchParamList>();
 
@@ -10,7 +12,11 @@ export function SearchNavigator() {
     <SearchStack.Navigator headerMode="none">
       <SearchStack.Screen
         name="Search"
-        component={Cinema}
+        component={Search}
+      />
+      <SearchStack.Screen
+        name="Details"
+        component={Details}
       />
     </SearchStack.Navigator>
   );

@@ -10,6 +10,10 @@ export interface CinemaNavigationProps< RouteName extends keyof CinemaParamList 
   navigation: StackNavigationProp<CinemaParamList, RouteName>;
   route: RouteProp<CinemaParamList, RouteName>
 }
+export interface SearchNavigationProps< RouteName extends keyof SearchParamList > {
+  navigation: StackNavigationProp<SearchParamList, RouteName>;
+  route: RouteProp<SearchParamList, RouteName>
+}
 
 export type RootStackParamList = {
   Root: undefined;
@@ -29,4 +33,5 @@ export type CinemaParamList = {
 
 export type SearchParamList = {
   Search: undefined;
+  Details:  { id: number;};
 };
