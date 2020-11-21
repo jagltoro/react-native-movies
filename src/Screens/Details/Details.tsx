@@ -6,8 +6,7 @@ import { getDetails } from "../../Actions/Movies";
 import { MovieDetailsProps } from "../../Interfaces/MovieDetails";
 import { CastProps } from "../../Interfaces/Cast";
 
-import Header from "../../Components/Header";
-import Loader from "../../Components/Loader";
+import {Header, Loader} from "../../Components";
 
 import { CinemaNavigationProps } from "../../Helpers/Navigation";
 import { Box, Text } from "../../Helpers";
@@ -57,7 +56,7 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
                 icon: "bookmark",
                 color: "headerText",
                 backgroundColor: "mainBackground",
-                onPress: () => navigation.navigate("Cinema"),
+                onPress: () => navigation.push("Cinema"),
               }}
             />
             <Banner

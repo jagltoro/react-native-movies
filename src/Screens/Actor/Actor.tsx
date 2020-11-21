@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { FontAwesome } from '@expo/vector-icons'; 
 
 import { getDetails } from "../../Actions/Actors";
-import Header from "../../Components/Header";
-import Loader from "../../Components/Loader";
+import {Header, Loader} from "../../Components";
 import { Box, Text, useTheme } from "../../Helpers";
 import { CinemaNavigationProps } from "../../Helpers/Navigation";
 import { ActorProps } from "../../Interfaces/Actor";
