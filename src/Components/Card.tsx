@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import { Image } from "react-native";
 
-import { Box, Text, useTheme } from "../../Helpers";
+import { Box, Text, useTheme } from "../Helpers";
 import Rating from "./Rating";
-import { APIGenresProps } from "../../interfaces";
+import { APIGenresProps } from "../interfaces";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface CardProps {

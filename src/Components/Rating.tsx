@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesome as Icon } from "@expo/vector-icons";
 import { PixelRatio } from "react-native";
-import { Box, Text, useTheme } from "../../Helpers";
+import { Box, Text, useTheme } from "../Helpers";
 
 interface RatingProps {
   rating: number;

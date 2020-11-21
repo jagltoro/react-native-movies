@@ -3,13 +3,9 @@ import {ScrollView} from "react-native-gesture-handler";
 
 import {getMovies, getUpcomingMovies, getGenres} from '../../Actions/Movies';
 import {storeData, getData, Box} from "../../Helpers";
-
-import Card from "./Card";
-
+import {Card, Header, Loader} from '../../Components';
 import {APIGenresProps} from "../../interfaces";
-import Header from '../../Components/Header';
 import { CinemaNavigationProps } from '../../Helpers/Navigation';
-import { ActivityIndicator } from 'react-native';
 import Filters from './Filters';
 
 const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
@@ -78,10 +74,7 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
         backgroundColor="mainBackground"
       />
         <Filters buttons={filterButtons} active={active} />
-        { !movies.length && 
-          <Box flex={1} justifyContent="center" alignItems="center">
-            <ActivityIndicator size="large" color="#0000ff" style={{ zIndex: 11 }} />
-          </Box>
+        { !movies.length && <Loader />
         }
       <ScrollView
         showsVerticalScrollIndicator={false}
