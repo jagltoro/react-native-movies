@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import {CinemaTabNavigator} from './CinemaTab';
 import {SearchNavigator} from "./SearchTab";
+import {ProfileNavigator} from "./ProfileTab";
 import {TabRoutes} from "../../Helpers/Navigation";
 
 const BottomTab = createBottomTabNavigator<TabRoutes>();
@@ -24,6 +25,13 @@ export default function Navigator() {
         component={SearchNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Profile"
+        component={ProfileNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />
     </BottomTab.Navigator>

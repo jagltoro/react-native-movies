@@ -23,6 +23,7 @@ export type RootStackParamList = {
 export type TabRoutes = {
   Cinema: undefined;
   Search: undefined;
+  Profile: undefined;
 }
 
 export type CinemaParamList = {
@@ -34,4 +35,7 @@ export type CinemaParamList = {
 export type SearchParamList = {
   Search: undefined;
   Details:  { id: number;};
+};
+export type ProfileParamList = {
+  Profile: undefined;
 };
