@@ -29,17 +29,14 @@ const Profile = () => {
         paddingHorizontal="m"
       >
         <Text variant="text">Theme</Text>
-        <Box backgroundColor="transparent">
-          <Picker
-            selectedValue={colorTheme}
-            mode="dropdown"
-            style={{ height: 50, width: 100 }}
-            onValueChange={(value) => handleChange(value)}
-          >
-            <Picker.Item color={theme.colors["text"]} label="Light" value="light" />
-            <Picker.Item color={theme.colors["text"]}label="Dark" value="dark" />
-          </Picker>
-        </Box>
+        <Picker
+          selectedValue={colorTheme}
+          style={{ height: 50, width: 100, color: theme.colors["text"] }}
+          onValueChange={(value) => handleChange(value)}
+        >
+          <Picker.Item label="Light" value="light" />
+          <Picker.Item label="Dark" value="dark" />
+        </Picker>
       </Box>
     </Box>
   );
