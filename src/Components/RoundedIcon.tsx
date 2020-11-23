@@ -1,5 +1,5 @@
 import React from 'react';
-import {Feather as Icon} from "@expo/vector-icons";
+import {FontAwesome as Icon} from "@expo/vector-icons";
 import {Theme, Box, Text} from "../Helpers";
 
 export interface RoundedIconProps {
@@ -30,7 +30,7 @@ const RoundedIcon = ({ name, size, color, backgroundColor, iconRatio, marginBott
 };
 
 RoundedIcon.defaultProps = {
-  iconRatio: 0.7
+  iconRatio: 0.5
 };
 
 export default RoundedIcon;
