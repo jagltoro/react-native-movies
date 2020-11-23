@@ -9,5 +9,5 @@ getData("theme").then(async (theme) => {
 
 export const ThemeContext = React.createContext({
   colorTheme: themeColors,
-  setColorTheme: () => {},
+  setColorTheme: () => {}
 });
