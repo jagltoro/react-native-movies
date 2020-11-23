@@ -14,7 +14,8 @@
       "fallbackToCacheTimeout": 0
     },
     "android": {
-      "softwareKeyboardLayoutMode": "pan"
+      "softwareKeyboardLayoutMode": "pan",
+      "package": "com.jagltoro.movies"
     },
     "assetBundlePatterns": [
       "**/*"
