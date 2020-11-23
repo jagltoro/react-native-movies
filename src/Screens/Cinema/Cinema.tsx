@@ -17,7 +17,7 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
     setMovies([]);
     const fetchMovies = async () => {
       fetchNowPlaying();
-      getData().then(async (genresData) => {
+      getData("moviesGenres").then(async (genresData) => {
         if(genresData){
           const data = JSON.parse(genresData);
           if(data.genres){
@@ -25,7 +25,7 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
           }
         }else{
           const genresDataApi = await getGenres();
-          storeData(genresDataApi);
+          storeData("moviesGenres",genresDataApi);
           setGenres(genresDataApi.genres);
         }
       });

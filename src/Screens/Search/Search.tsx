@@ -17,7 +17,7 @@ const Search = ({ route, navigation }: SearchNavigationProps<"Search">) => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      getData().then(async (genresData) => {
+      getData("moviesGenres").then(async (genresData) => {
         if(genresData){
           const data = JSON.parse(genresData);
           if(data.genres){
@@ -25,7 +25,7 @@ const Search = ({ route, navigation }: SearchNavigationProps<"Search">) => {
           }
         }else{
           const genresDataApi = await getGenres();
-          storeData(genresDataApi);
+          storeData("moviesGenres", genresDataApi);
           setGenres(genresDataApi.genres);
         }
       });
