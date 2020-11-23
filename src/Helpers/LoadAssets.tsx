@@ -1,4 +1,4 @@
-import React, {ReactElement, useCallback, useEffect, useState} from "react";
+import React, {ReactElement, useCallback, useContext, useEffect, useState} from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import {AppLoading} from "expo";
 import {Asset} from "expo-asset";
@@ -6,6 +6,7 @@ import * as Font from "expo-font";
 import {InitialState, NavigationContainer} from "@react-navigation/native";
 import Constants from "expo-constants";
 import {StatusBar} from 'expo-status-bar';
+import { ThemeContext } from "./Context";
 
 const NAVIGATION_STATE_KEY = `NAVIGATION_STATE_KEY-${Constants.manifest.sdkVersion}`;
 
@@ -37,6 +38,8 @@ const LoadAssets = ({assets, fonts, children}: LoadAssetsProps) => {
   const [isNavigationReady, setIsNavigationReady] = useState(!__DEV__);
   const [initialState, setInitialState] = useState<InitialState | undefined>();
   const ready = useLoadAssets(assets || [], fonts || {});
+  const { colorTheme } = useContext(ThemeContext);
+  
   useEffect(() => {
     const restoreState = async () => {
       try {
@@ -66,7 +69,7 @@ const LoadAssets = ({assets, fonts, children}: LoadAssetsProps) => {
   }
   return (
     <NavigationContainer {...{onStateChange, initialState}}>
-      <StatusBar style="dark"/>
+      <StatusBar style={colorTheme === "dark" ? "light" : "dark"}/>
       {children}
     </NavigationContainer>
   );
