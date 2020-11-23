@@ -1,17 +1,25 @@
+import React from 'react';
 import {Feather as Icon} from "@expo/vector-icons";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as React from 'react';
 
 import {CinemaTabNavigator} from './CinemaTab';
 import {SearchNavigator} from "./SearchTab";
 import {ProfileNavigator} from "./ProfileTab";
 import {TabRoutes} from "../../Helpers/Navigation";
+import { useTheme } from "../../Helpers";
 
 const BottomTab = createBottomTabNavigator<TabRoutes>();
 
 export default function Navigator() {
+  const theme = useTheme();
   return (
     <BottomTab.Navigator
+      tabBarOptions={{
+        style: {
+            backgroundColor: theme.colors['tabBar'],
+            borderTopColor: theme.colors['tabBarBorder']
+        }
+      }}
       initialRouteName="Cinema">
       <BottomTab.Screen
         name="Cinema"

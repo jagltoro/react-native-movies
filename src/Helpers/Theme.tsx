@@ -123,6 +123,8 @@ export const theme = createTheme({
     danger: palette["color-danger-500"],
     genresText: palette["color-basic-600"],
     headerText: palette["color-basic-900"],
+    tabBar: palette["color-basic-100"],
+    tabBarBorder: palette["color-basic-400"],
     divider: palette["color-basic-400"],
     transparent: palette["transparent"]
   },
@@ -207,7 +209,26 @@ export const theme = createTheme({
   }
 });
 
+
 export type Theme = typeof theme;
+
+
+export const darkTheme: Theme = {
+  ...theme,
+  colors: {
+    ...theme.colors,
+    mainBackground: palette["color-basic-900"],
+    border: palette["color-basic-200"],
+    text: palette["color-basic-100"],
+    primary: palette["color-primary-300"],
+    cardTitles: palette["color-basic-900"],
+    headerText: palette["color-basic-200"],
+    tabBar: palette["color-basic-1000"],
+    tabBarBorder: palette["color-basic-1100"],
+  }
+};
+
+
 export const Box = createBox<Theme>();
 export const Text = createText<Theme>();
 export const useTheme = () => useReTheme<Theme>();
