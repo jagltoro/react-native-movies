@@ -15,6 +15,11 @@ export interface SearchNavigationProps< RouteName extends keyof SearchParamList 
   route: RouteProp<SearchParamList, RouteName>
 }
 
+export interface ProfileNavigationProps< RouteName extends keyof ProfileParamList > {
+  navigation: StackNavigationProp<ProfileParamList, RouteName>;
+  route: RouteProp<ProfileParamList, RouteName>
+}
+
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
@@ -38,4 +43,6 @@ export type SearchParamList = {
 };
 export type ProfileParamList = {
   Profile: undefined;
+  Bookmarks: undefined;
+  Details:  { id: number;};
 };
