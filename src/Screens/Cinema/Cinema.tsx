@@ -2,9 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {ScrollView} from "react-native-gesture-handler";
 
 import {getMovies, getUpcomingMovies, getGenres} from '../../Actions/Movies';
-import {storeData, getData, Box} from "../../Helpers";
+import {storeData, getData, Box, getTextGenres} from "../../Helpers";
 import {Card, Header, Loader} from '../../Components';
-import {APIGenresProps} from "../../interfaces";
 import { CinemaNavigationProps } from '../../Helpers/Navigation';
 import Filters from './Filters';
 
@@ -46,13 +45,6 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
     setMovies(moviesData.results);
   }
 
-  const getTextGenres = (genresIds: number[]) => {
-    return genres.filter((genre: APIGenresProps) => {
-      return genresIds.includes(genre.id);
-    });
-  }
-
-
   const filterButtons = [
     {
       fetchFunction: fetchNowPlaying,
@@ -80,7 +72,7 @@ const Cinema = ({navigation}: CinemaNavigationProps<"Cinema">) => {
         showsVerticalScrollIndicator={false}
       >
         { movies.length > 0 && movies.map((movie: any, index) => {
-          const textGenres = getTextGenres(movie.genre_ids);
+          const textGenres = getTextGenres(movie.genre_ids, genres);
           const last = index === movies.length -1;
           return (
             <Card

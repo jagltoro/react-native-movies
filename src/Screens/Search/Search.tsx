@@ -4,8 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import { getGenres, getSearch } from "../../Actions/Movies";
 import {Card, Header, Loader, TextInput} from "../../Components";
-import {storeData, getData, Box} from "../../Helpers";
-import { APIGenresProps } from "../../interfaces";
+import {storeData, getData, Box, getTextGenres} from "../../Helpers";
 import { SearchNavigationProps } from "../../Helpers/Navigation";
 
 const Search = ({ route, navigation }: SearchNavigationProps<"Search">) => {
@@ -41,12 +40,6 @@ const Search = ({ route, navigation }: SearchNavigationProps<"Search">) => {
     setMovies(moviesData.results);
   }
 
-  const getTextGenres = (genresIds: number[]) => {
-    return genres.filter((genre: APIGenresProps) => {
-      return genresIds.includes(genre.id);
-    });
-  }
-
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <Header
@@ -75,7 +68,7 @@ const Search = ({ route, navigation }: SearchNavigationProps<"Search">) => {
         showsVerticalScrollIndicator={false}
       >
         { movies.length > 0 && movies.map((movie: any, index) => {
-            const textGenres = getTextGenres(movie.genre_ids);
+            const textGenres = getTextGenres(movie.genre_ids, genres);
             const last = index === movies.length -1;
             return (
               <Card

@@ -6,7 +6,7 @@ import { getDetails } from "../../Actions/Actors";
 import {Header, Loader} from "../../Components";
 import { Box, Text, useTheme } from "../../Helpers";
 import { CinemaNavigationProps } from "../../Helpers/Navigation";
-import { ActorProps } from "../../Interfaces/Actor";
+import { ActorProps } from "../../Interfaces";
 import SocialMediaButton from "./SocialMediaButton";
 
 const placeholder =  require("#/images/poster-placeholder.png");

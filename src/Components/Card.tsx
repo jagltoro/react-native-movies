@@ -3,14 +3,14 @@ import { Image } from "react-native";
 
 import { Box, Text, useTheme } from "../Helpers";
 import Rating from "./Rating";
-import { APIGenresProps } from "../interfaces";
+import { GenresProps } from "../Interfaces";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface CardProps {
   image: string;
   title: string;
   rating: number;
-  genres: APIGenresProps[];
+  genres: GenresProps[];
   navigateTo: () => void;
   last?: boolean;
 }

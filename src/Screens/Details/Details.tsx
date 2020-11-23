@@ -3,8 +3,7 @@ import { Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 import { getDetails } from "../../Actions/Movies";
-import { MovieDetailsProps } from "../../Interfaces/MovieDetails";
-import { CastProps } from "../../Interfaces/Cast";
+import { MovieDetailsProps, CastProps, BookmarkProps } from "../../Interfaces";
 
 import {Header, Loader} from "../../Components";
 
@@ -44,15 +43,7 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
 
   const toggleBookmark = (movie:MovieDetailsProps) => {
     const {id, title, vote_average, poster_path, genres} = movie;
-    let bookmarks:{
-      [id:number] : {
-        id:number;
-        title: string;
-        vote_average: number;
-        poster_path: string;
-        genres_ids: number[]
-      }
-    };
+    let bookmarks:BookmarkProps;
     let ids = [...bookmarksIds];
     let genres_ids = genres.map(genre => genre.id);
     
