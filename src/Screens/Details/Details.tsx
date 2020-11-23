@@ -9,7 +9,7 @@ import { CastProps } from "../../Interfaces/Cast";
 import {Header, Loader} from "../../Components";
 
 import { CinemaNavigationProps } from "../../Helpers/Navigation";
-import { Box, Text } from "../../Helpers";
+import { Box, Text, storeData, getData } from "../../Helpers";
 
 import Banner from "./Banner";
 import Cast from "./Cast";
@@ -26,6 +26,7 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
   const [details, setDetails] = useState<MovieDetailsProps>();
   const [credits, setCredits] = useState<CastProps>();
   const [loaded, setLoaded] = useState(false);
+  const [bookmarksIds, setBookmarksIds] = useState<number []>([]);
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -33,8 +34,47 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
       setDetails(details);
       setCredits(details.credits);
     };
+    getData("bookmarks").then(async (bookmarksSaved) => { 
+      let bookmarks = JSON.parse(bookmarksSaved);
+      let moviesBookmarked:number[] = Object.keys(bookmarks).map(movieId => parseInt(movieId));
+      setBookmarksIds(moviesBookmarked);
+    });
     fetchDetails();
   }, []);
+
+  const toggleBookmark = (movie:MovieDetailsProps) => {
+    const {id, title, vote_average, poster_path, genres} = movie;
+    let bookmarks:{
+      [id:number] : {
+        id:number;
+        title: string;
+        vote_average: number;
+        poster_path: string;
+        genres_ids: number[]
+      }
+    };
+    let ids = [...bookmarksIds];
+    let genres_ids = genres.map(genre => genre.id);
+    
+    getData("bookmarks").then(async (bookmarksSaved) => {
+      bookmarks = JSON.parse(bookmarksSaved);
+      if(!bookmarks.hasOwnProperty(id)){
+        bookmarks[id] = {
+          id,
+          title,
+          vote_average,
+          poster_path,
+          genres_ids
+        }
+        ids.push(id);
+      }else {
+        ids = ids.filter(movieId => movieId !== id );
+        delete bookmarks[id];
+      }
+      storeData("bookmarks", bookmarks);
+      setBookmarksIds(ids);
+    });
+  }
 
   return (
     <ScrollView>
@@ -53,10 +93,10 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
               color={"transparent"}
               backgroundColor="transparent"
               right={{
-                icon: "bookmark",
+                icon: bookmarksIds.includes(details.id) ? "bookmark" : "bookmark-o",
                 color: "headerText",
                 backgroundColor: "mainBackground",
-                onPress: () => navigation.push("Cinema"),
+                onPress: () => toggleBookmark(details),
               }}
             />
             <Banner
