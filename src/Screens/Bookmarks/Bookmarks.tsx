@@ -15,13 +15,27 @@ const Bookmarks = ({navigation}: ProfileNavigationProps<"Bookmarks">) => {
       const data = JSON.parse(genresData);
       setGenres(data.genres);
     });
+    updateBookmarks();
+   
+  }, []);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      updateBookmarks();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+
+  const updateBookmarks = () => {
     getData("bookmarks").then(async (genresData) => {
       const data = JSON.parse(genresData);
       let movies:BookmarkMovie[] = []
       Object.keys(data).map(key => movies.push(data[key]));
       setMovies(movies);
     });
-  }, []);
+  }
+
 
   const clearBookmarks = () => {
     storeData("bookmarks",{});
@@ -56,7 +70,6 @@ const Bookmarks = ({navigation}: ProfileNavigationProps<"Bookmarks">) => {
           </Box>
         }
         { movies.length > 0 && movies.map((movie: any, index) => {
-          console.log(movie);
           const textGenres = getTextGenres(movie.genres_ids, genres);
           const last = index === movies.length -1;
           return (

@@ -33,22 +33,35 @@ const Details = ({ route, navigation }: CinemaNavigationProps<"Details">) => {
       setDetails(details);
       setCredits(details.credits);
     };
+    updateBookmark();
+    fetchDetails();
+  }, []);
+  
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      updateBookmark();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  const updateBookmark = () => {
     getData("bookmarks").then(async (bookmarksSaved) => { 
-      let bookmarks = JSON.parse(bookmarksSaved);
+      let bookmarks = {};
+      if(bookmarksSaved !== ""){ bookmarks = JSON.parse(bookmarksSaved); }
       let moviesBookmarked:number[] = Object.keys(bookmarks).map(movieId => parseInt(movieId));
       setBookmarksIds(moviesBookmarked);
     });
-    fetchDetails();
-  }, []);
+  }
 
   const toggleBookmark = (movie:MovieDetailsProps) => {
     const {id, title, vote_average, poster_path, genres} = movie;
-    let bookmarks:BookmarkProps;
+    let bookmarks:BookmarkProps = {};
     let ids = [...bookmarksIds];
     let genres_ids = genres.map(genre => genre.id);
     
     getData("bookmarks").then(async (bookmarksSaved) => {
-      bookmarks = JSON.parse(bookmarksSaved);
+      if(bookmarksSaved !== ""){ bookmarks = JSON.parse(bookmarksSaved); }
       if(!bookmarks.hasOwnProperty(id)){
         bookmarks[id] = {
           id,
